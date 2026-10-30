@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "attributions.schema.json",
+  "title": "Attribution",
+  "type": "object",
+  "required": ["id", "work_id", "attribution", "layer", "source_refs"],
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "work_id": { "$ref": "common.schema.json#/$defs/id" },
+    "attribution": { "type": "string" },
+    "layer": { "const": "interpretation", "description": "Attribution is always interpretation" },
+    "certainty": { "$ref": "common.schema.json#/$defs/certainty" },
+    "precedence": { "type": "integer" },
+    "source_refs": { "$ref": "common.schema.json#/$defs/source_refs", "minItems": 1 }
+  },
+  "additionalProperties": false
+}

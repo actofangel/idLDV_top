@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Identity of Leonardo da Vinci</title>
+<style>
+:root{--bg:#faf8f3;--fg:#1f1d1a;--muted:#6b665d;--line:#ddd6c8;--accent:#7a3b1d;--fact:#2f5d50;--interp:#8a5a00;--hyp:#7a3b6b}
+@media (prefers-color-scheme:dark){:root{--bg:#171614;--fg:#ebe6dc;--muted:#a49d90;--line:#36322c;--accent:#d99a72;--fact:#7fc0ad;--interp:#e0b860;--hyp:#d79ac6}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.8 "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif}
+header,main,footer{max-width:46rem;margin:0 auto;padding:0 16px}
+header{padding-top:2rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
+header .site{font-size:.95rem;letter-spacing:.04em;color:var(--muted);text-decoration:none}
+nav{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;margin-top:.5rem;font-size:.95rem}
+nav a{color:var(--fg);text-decoration:none;border-bottom:1px solid transparent}
+nav a:hover,nav a[aria-current]{border-bottom-color:var(--accent)}
+h1{font-size:1.9rem;line-height:1.35;margin:2.5rem 0 .5rem;font-weight:600}
+h2{font-size:1.3rem;margin:2.5rem 0 .5rem;font-weight:600}
+h3{font-size:1.05rem;margin:1.5rem 0 .25rem}
+.lead{color:var(--muted)}
+a{color:var(--accent)}
+.badge{display:inline-block;font:600 .72rem/1 system-ui,sans-serif;letter-spacing:.05em;padding:.3em .55em;border-radius:3px;border:1px solid currentColor;vertical-align:.15em}
+.fact{color:var(--fact)}.interp{color:var(--interp)}.hyp{color:var(--hyp)}
+.box{border:1px solid var(--line);border-left:3px solid var(--hyp);padding:.75rem 1rem;margin:1rem 0}
+table{width:100%;border-collapse:collapse;font-size:.92rem;margin:1rem 0}
+th,td{text-align:left;vertical-align:top;padding:.45rem .5rem;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted)}
+.scroll{overflow-x:auto}
+code{font-size:.88em}
+footer{margin-top:4rem;padding-top:1rem;padding-bottom:2rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+<a class="site" href="index.html">The Identity of Leonardo da Vinci</a>
+<nav>
+<a href="index.html" aria-current="page">概要</a>
+<a href="method.html">研究方法</a>
+<a href="last-supper.html">最後の晩餐</a>
+<a href="database.html">参照データベース</a>
+<a href="sources.html">ソース</a>
+</nav>
+</header>
+<main>
+<h1>The Identity of Leonardo da Vinci</h1>
+<p class="lead">一次資料に基づく独立研究プロジェクト。文書記録と物理的観察を土台に、レオナルド・ダ・ヴィンチの作品と思考を検証可能な形で記述することを目的とする。</p>
+
+<h2>このサイトの構成</h2>
+<table>
+<tr><th>ページ</th><th>内容</th></tr>
+<tr><td><a href="method.html">研究方法</a></td><td>レイヤー純度、ソース許容規則、検証可能性の原則</td></tr>
+<tr><td><a href="last-supper.html">最後の晩餐</a></td><td>三層分析モデルと作業仮説の位置づけ</td></tr>
+<tr><td><a href="database.html">参照データベース</a></td><td>作品、年代、帰属、ソース記録、解釈主張の一覧</td></tr>
+<tr><td><a href="sources.html">ソース</a></td><td>許容されるソースのカテゴリと登録済み資料</td></tr>
+</table>
+
+<h2>記述の三区分</h2>
+<p>本サイトのすべての記述は、次のいずれかの層に属することを明示する。</p>
+<p><span class="badge fact">事実</span> 文書記録、物理的観察、資料に明示的に記載された内容</p>
+<p><span class="badge interp">解釈</span> 帰属、意図の推定、図像学的読解。根拠資料の参照を必ず伴う</p>
+<p><span class="badge hyp">仮説</span> 研究者の作業仮説。支持証拠と反証条件を併記する</p>
+</main>
+<footer>
+The Identity of Leonardo da Vinci (Project2) · <a href="https://github.com/actofangel/idLDV/wiki">Wiki</a> · MIT License
+</footer>
+</body>
+</html>

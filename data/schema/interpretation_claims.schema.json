@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "interpretation_claims.schema.json",
+  "title": "Interpretation claim",
+  "type": "object",
+  "required": ["id", "claim", "layer", "supporting_refs"],
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "claim": { "$ref": "common.schema.json#/$defs/multilingual" },
+    "layer": { "enum": ["interpretation", "hypothesis"] },
+    "analysis_layer": { "$ref": "common.schema.json#/$defs/analysis_layer" },
+    "certainty": { "$ref": "common.schema.json#/$defs/certainty" },
+    "supporting_refs": { "$ref": "common.schema.json#/$defs/source_refs" },
+    "fact_ids": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/id" },
+      "description": "Fact layer records this claim rests on"
+    },
+    "falsification": { "type": "string", "description": "[provisional] observation that would refute the claim" },
+    "verification": { "type": "string", "description": "e.g. path to a sympy script for geometric claims" }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "source_records.schema.json",
+  "title": "Source record",
+  "type": "object",
+  "required": ["id", "category", "author", "title"],
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "category": {
+      "description": "Admitted categories only. Background reading is not recorded here.",
+      "enum": ["critical_edition", "catalogue_raisonne", "codicological_study", "peer_reviewed_monograph"]
+    },
+    "author": { "type": "string" },
+    "title": { "type": "string" },
+    "edition": { "type": "string" },
+    "volume": { "type": "string" },
+    "place": { "type": "string" },
+    "year": { "type": "integer" },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

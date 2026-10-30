@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "datings.schema.json",
+  "title": "Dating",
+  "type": "object",
+  "required": ["id", "work_id", "layer", "source_refs"],
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "work_id": { "$ref": "common.schema.json#/$defs/id" },
+    "date_from": { "type": "integer" },
+    "date_to": { "type": "integer" },
+    "basis": { "type": "string", "description": "What the dating rests on" },
+    "layer": { "enum": ["fact", "interpretation"] },
+    "certainty": { "$ref": "common.schema.json#/$defs/certainty" },
+    "precedence": { "type": "integer", "description": "Rank among competing records; rule pending researcher confirmation" },
+    "source_refs": { "$ref": "common.schema.json#/$defs/source_refs", "minItems": 1 }
+  },
+  "additionalProperties": false
+}

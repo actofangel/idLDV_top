@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "common.schema.json",
+  "title": "Common definitions",
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z]+:[A-Za-z0-9_.]+$" },
+    "layer": {
+      "description": "fact: documentary record or physical observation. interpretation: attribution, intent, iconographic reading. hypothesis: researcher's working hypothesis.",
+      "enum": ["fact", "interpretation", "hypothesis"]
+    },
+    "certainty": {
+      "description": "[provisional] four-step uncertainty scale",
+      "enum": ["fact", "strong_interpretation", "working_hypothesis", "conjecture"]
+    },
+    "analysis_layer": {
+      "description": "Three-layer model of the Last Supper",
+      "enum": ["geometric", "symbolic", "surface"]
+    },
+    "multilingual": {
+      "type": "object",
+      "propertyNames": { "enum": ["ja", "en", "fr", "it", "la"] },
+      "additionalProperties": { "type": "string" },
+      "minProperties": 1
+    },
+    "source_ref": {
+      "type": "object",
+      "required": ["source_id"],
+      "properties": {
+        "source_id": { "$ref": "#/$defs/id" },
+        "locator": { "type": "string", "description": "doc. n., vol., page, folio" }
+      },
+      "additionalProperties": false
+    },
+    "source_refs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source_ref" }
+    }
+  }
+}

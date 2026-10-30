@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "works.schema.json",
+  "title": "Work",
+  "type": "object",
+  "required": ["id", "title", "layer", "source_refs"],
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "title": { "$ref": "common.schema.json#/$defs/multilingual" },
+    "medium": { "type": "string" },
+    "location": { "type": "string" },
+    "layer": { "const": "fact" },
+    "source_refs": { "$ref": "common.schema.json#/$defs/source_refs", "minItems": 1 },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

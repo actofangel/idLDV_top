@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>参照データベース</title>
+<title>Reference Database</title>
 <style>
 :root{--bg:#faf8f3;--fg:#1f1d1a;--muted:#6b665d;--line:#ddd6c8;--accent:#7a3b1d;--fact:#2f5d50;--interp:#8a5a00;--hyp:#7a3b6b}
 @media (prefers-color-scheme:dark){:root{--bg:#171614;--fg:#ebe6dc;--muted:#a49d90;--line:#36322c;--accent:#d99a72;--fact:#7fc0ad;--interp:#e0b860;--hyp:#d79ac6}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.8 "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.8 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
 header,main,footer{max-width:46rem;margin:0 auto;padding:0 16px}
 header{padding-top:2rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
 header .site{font-size:.95rem;letter-spacing:.04em;color:var(--muted);text-decoration:none}
@@ -35,46 +35,46 @@ footer{margin-top:4rem;padding-top:1rem;padding-bottom:2rem;border-top:1px solid
 <header>
 <a class="site" href="index.html">The Identity of Leonardo da Vinci</a>
 <nav>
-<a href="index.html">概要</a>
-<a href="method.html">研究方法</a>
-<a href="last-supper.html">最後の晩餐</a>
-<a href="database.html" aria-current="page">参照データベース</a>
-<a href="sources.html">ソース</a>
+<a href="index.html">Overview</a>
+<a href="method.html">Method</a>
+<a href="last-supper.html">Last Supper</a>
+<a href="database.html" aria-current="page">Reference Database</a>
+<a href="sources.html">Sources</a>
 </nav>
 </header>
 <main>
-<h1>参照データベース</h1>
-<p class="lead">各レコードは JSON スキーマに準拠し、レイヤー純度とソース許容の検証を通過したものだけを掲載する。スキーマは <a href="https://github.com/actofangel/idLDV_top/tree/main/data/schema">data/schema</a> を参照。</p>
+<h1>Reference Database</h1>
+<p class="lead">Only records that conform to the JSON schemas and pass the layer purity and source admission checks are listed. See the schemas in <a href="https://github.com/actofangel/idLDV_top/tree/main/data/schema">data/schema</a>.</p>
 <p>
-<label><input type="radio" name="c" value="works" checked> 作品</label>
-<label><input type="radio" name="c" value="datings"> 年代</label>
-<label><input type="radio" name="c" value="attributions"> 帰属</label>
-<label><input type="radio" name="c" value="interpretation_claims"> 解釈主張</label>
-<label><input type="radio" name="c" value="source_records"> ソース記録</label>
+<label><input type="radio" name="c" value="works" checked> Works</label>
+<label><input type="radio" name="c" value="datings"> Datings</label>
+<label><input type="radio" name="c" value="attributions"> Attributions</label>
+<label><input type="radio" name="c" value="interpretation_claims"> Interpretation claims</label>
+<label><input type="radio" name="c" value="source_records"> Source records</label>
 </p>
 <div class="scroll"><table id="t"></table></div>
 <script>
-const LAYER = {fact: ["事実", "fact"], interpretation: ["解釈", "interp"], hypothesis: ["仮説", "hyp"]};
+const LAYER = {fact: ["Fact", "fact"], interpretation: ["Interpretation", "interp"], hypothesis: ["Hypothesis", "hyp"]};
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const text = v => v && typeof v === "object" && !Array.isArray(v) ? (v.ja ?? v.it ?? v.la ?? v.en ?? v.fr ?? Object.values(v)[0]) : v;
+const text = v => v && typeof v === "object" && !Array.isArray(v) ? (v.en ?? v.it ?? v.la ?? v.fr ?? Object.values(v)[0]) : v;
 const refs = a => (a || []).map(r => r.source_id + (r.locator ? " " + r.locator : "")).join("; ");
 const badge = l => LAYER[l] ? `<span class="badge ${LAYER[l][1]}">${LAYER[l][0]}</span>` : "";
 const COLS = {
-  works: [["ID", r => r.id], ["題名", r => text(r.title)], ["技法", r => r.medium], ["所在", r => r.location], ["層", r => r.layer], ["典拠", r => refs(r.source_refs)]],
-  datings: [["ID", r => r.id], ["作品", r => r.work_id], ["年代", r => [r.date_from, r.date_to].filter(x => x != null).join(" 〜 ")], ["根拠", r => r.basis], ["層", r => r.layer], ["典拠", r => refs(r.source_refs)]],
-  attributions: [["ID", r => r.id], ["作品", r => r.work_id], ["帰属", r => r.attribution], ["層", r => r.layer], ["典拠", r => refs(r.source_refs)]],
-  interpretation_claims: [["ID", r => r.id], ["主張", r => text(r.claim)], ["分析層", r => r.analysis_layer], ["層", r => r.layer], ["反証条件", r => r.falsification], ["典拠", r => refs(r.supporting_refs)]],
-  source_records: [["ID", r => r.id], ["著者", r => r.author], ["書名", r => r.title], ["カテゴリ", r => r.category]]
+  works: [["ID", r => r.id], ["Title", r => text(r.title)], ["Medium", r => r.medium], ["Location", r => r.location], ["Layer", r => r.layer], ["Sources", r => refs(r.source_refs)]],
+  datings: [["ID", r => r.id], ["Work", r => r.work_id], ["Date", r => [r.date_from, r.date_to].filter(x => x != null).join(" to ")], ["Basis", r => r.basis], ["Layer", r => r.layer], ["Sources", r => refs(r.source_refs)]],
+  attributions: [["ID", r => r.id], ["Work", r => r.work_id], ["Attribution", r => r.attribution], ["Layer", r => r.layer], ["Sources", r => refs(r.source_refs)]],
+  interpretation_claims: [["ID", r => r.id], ["Claim", r => text(r.claim)], ["Analysis layer", r => r.analysis_layer], ["Layer", r => r.layer], ["Falsification", r => r.falsification], ["Sources", r => refs(r.supporting_refs)]],
+  source_records: [["ID", r => r.id], ["Author", r => r.author], ["Title", r => r.title], ["Category", r => r.category]]
 };
 const cache = {};
 async function show(name) {
   const t = document.getElementById("t");
   try { cache[name] ??= await (await fetch(`data/${name}.json`)).json(); }
-  catch { t.innerHTML = "<tr><td>データを読み込めませんでした。</td></tr>"; return; }
+  catch { t.innerHTML = "<tr><td>Could not load data.</td></tr>"; return; }
   const rows = cache[name], cols = COLS[name];
-  if (!rows.length) { t.innerHTML = "<tr><td>まだ登録されていません。</td></tr>"; return; }
+  if (!rows.length) { t.innerHTML = "<tr><td>Nothing registered yet.</td></tr>"; return; }
   t.innerHTML = "<tr>" + cols.map(c => `<th>${c[0]}</th>`).join("") + "</tr>" +
-    rows.map(r => "<tr>" + cols.map(([h, f]) => `<td>${h === "層" ? badge(f(r)) : esc(f(r))}</td>`).join("") + "</tr>").join("");
+    rows.map(r => "<tr>" + cols.map(([h, f]) => `<td>${h === "Layer" ? badge(f(r)) : esc(f(r))}</td>`).join("") + "</tr>").join("");
 }
 document.querySelectorAll("input[name=c]").forEach(i => i.addEventListener("change", () => show(i.value)));
 show("works");

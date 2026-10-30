@@ -7,35 +7,35 @@ The Identity of Leonardo da Vinci
 
 [Web Resource](https://github.com/actofangel/idLDV/wiki/Links1)
 
-## サイト構成
+## Site structure
 
-GitHub Pages（ブランチ `main`、ルート）でそのまま公開できる静的サイトです。各ページは CSS を内包した単一ファイル HTML です。
+A static site ready for GitHub Pages (branch `main`, root). Each page is a single HTML file with its styles inline.
 
-| ファイル | 内容 |
+| File | Content |
 |---|---|
-| `index.html` | 概要、記述の三区分（事実、解釈、仮説） |
-| `method.html` | 研究方法：レイヤー純度、ソース許容規則、検証可能性 |
-| `last-supper.html` | 最後の晩餐の三層分析モデルと作業仮説 |
-| `database.html` | 参照データベースの閲覧（`data/*.json` を読み込む） |
-| `sources.html` | 許容ソースのカテゴリと登録済み資料 |
+| `index.html` | Overview and the three kinds of statement (fact, interpretation, hypothesis) |
+| `method.html` | Method: layer purity, source admission rules, verifiability |
+| `last-supper.html` | Three-layer analysis model of the Last Supper and working hypotheses |
+| `database.html` | Reference database viewer (reads `data/*.json`) |
+| `sources.html` | Admitted source categories and registered sources |
 
-## 参照データベース
+## Reference database
 
 ```
 data/
-  works.json                  作品（事実層のみ）
-  datings.json                年代（事実層または解釈層）
-  attributions.json           帰属（解釈層のみ）
-  source_records.json         ソース記録（許容カテゴリのみ）
-  interpretation_claims.json  解釈主張と作業仮説
-  schema/                     各コレクションの JSON スキーマ
+  works.json                  works (fact layer only)
+  datings.json                datings (fact or interpretation layer)
+  attributions.json           attributions (interpretation layer only)
+  source_records.json         source records (admitted categories only)
+  interpretation_claims.json  interpretation claims and working hypotheses
+  schema/                     JSON schema for each collection
 ```
 
-レコードを追加したら検証を実行します。`data/` を変更した push では GitHub Actions でも自動実行されます。
+Run the validator after adding records. It also runs in GitHub Actions on every push that changes `data/` or `tools/`.
 
 ```bash
 pip install jsonschema
 python3 tools/validate.py
 ```
 
-検証内容：スキーマ準拠、すべての典拠が `source_records.json` に登録済みであること、解釈層と仮説層に確実度「事実」を付けていないこと、ID の一意性と参照整合性。反証条件のない解釈主張と、検証スクリプトのない幾何学的主張は警告になります。
+Checks: schema conformance, every source reference points to a record in `source_records.json`, no interpretation or hypothesis record carries certainty "fact", unique ids and referential integrity. Interpretation claims without a falsification condition, and geometric claims without a verification script, produce warnings.

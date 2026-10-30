@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ソース</title>
+<title>Sources</title>
 <style>
 :root{--bg:#faf8f3;--fg:#1f1d1a;--muted:#6b665d;--line:#ddd6c8;--accent:#7a3b1d;--fact:#2f5d50;--interp:#8a5a00;--hyp:#7a3b6b}
 @media (prefers-color-scheme:dark){:root{--bg:#171614;--fg:#ebe6dc;--muted:#a49d90;--line:#36322c;--accent:#d99a72;--fact:#7fc0ad;--interp:#e0b860;--hyp:#d79ac6}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.8 "Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",Georgia,serif}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.8 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
 header,main,footer{max-width:46rem;margin:0 auto;padding:0 16px}
 header{padding-top:2rem;padding-bottom:1rem;border-bottom:1px solid var(--line)}
 header .site{font-size:.95rem;letter-spacing:.04em;color:var(--muted);text-decoration:none}
@@ -35,39 +35,39 @@ footer{margin-top:4rem;padding-top:1rem;padding-bottom:2rem;border-top:1px solid
 <header>
 <a class="site" href="index.html">The Identity of Leonardo da Vinci</a>
 <nav>
-<a href="index.html">概要</a>
-<a href="method.html">研究方法</a>
-<a href="last-supper.html">最後の晩餐</a>
-<a href="database.html">参照データベース</a>
-<a href="sources.html" aria-current="page">ソース</a>
+<a href="index.html">Overview</a>
+<a href="method.html">Method</a>
+<a href="last-supper.html">Last Supper</a>
+<a href="database.html">Reference Database</a>
+<a href="sources.html" aria-current="page">Sources</a>
 </nav>
 </header>
 <main>
-<h1>ソース</h1>
-<p class="lead">主張の根拠として許容されるソースのカテゴリと、データベースに登録済みの資料。</p>
+<h1>Sources</h1>
+<p class="lead">Source categories admitted as grounds for a claim, and the sources registered in the database.</p>
 
-<h2>許容カテゴリ</h2>
+<h2>Admitted categories</h2>
 <table>
-<tr><th>カテゴリ</th><th>データ上の値</th><th>例</th></tr>
-<tr><td>文書批判校訂版</td><td><code>critical_edition</code></td><td>Villata, Beltrami</td></tr>
-<tr><td>カタログ・レゾネ（学術的アパラトゥス付き）</td><td><code>catalogue_raisonne</code></td><td>Marani, Zöllner</td></tr>
-<tr><td>写本学研究</td><td><code>codicological_study</code></td><td>Pedretti</td></tr>
-<tr><td>査読済みモノグラフ</td><td><code>peer_reviewed_monograph</code></td><td></td></tr>
+<tr><th>Category</th><th>Data value</th><th>Examples</th></tr>
+<tr><td>Critical edition of documents</td><td><code>critical_edition</code></td><td>Villata, Beltrami</td></tr>
+<tr><td>Catalogue raisonn&eacute; with scholarly apparatus</td><td><code>catalogue_raisonne</code></td><td>Marani, Z&ouml;llner</td></tr>
+<tr><td>Codicological study</td><td><code>codicological_study</code></td><td>Pedretti</td></tr>
+<tr><td>Peer-reviewed monograph</td><td><code>peer_reviewed_monograph</code></td><td></td></tr>
 </table>
 
-<h2>許容されないもの</h2>
-<p>一般向け書籍、Wikipedia、出典不明のウェブ資料。背景理解には用いうるが、根拠としては引用しない。</p>
+<h2>Not admitted</h2>
+<p>Popular books, Wikipedia and unattributed web material. They may inform background understanding but are never cited as grounds.</p>
 
-<h2>登録済み資料</h2>
-<div class="scroll"><table id="src"><tr><td>読み込み中</td></tr></table></div>
+<h2>Registered sources</h2>
+<div class="scroll"><table id="src"><tr><td>Loading</td></tr></table></div>
 <script>
 fetch("data/source_records.json").then(r => r.json()).then(rows => {
   const t = document.getElementById("src");
-  if (!rows.length) { t.innerHTML = "<tr><td>まだ登録されていません。</td></tr>"; return; }
+  if (!rows.length) { t.innerHTML = "<tr><td>Nothing registered yet.</td></tr>"; return; }
   const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  t.innerHTML = "<tr><th>ID</th><th>著者</th><th>書名</th><th>版・巻</th><th>カテゴリ</th></tr>" +
+  t.innerHTML = "<tr><th>ID</th><th>Author</th><th>Title</th><th>Edition, volume</th><th>Category</th></tr>" +
     rows.map(r => `<tr><td><code>${esc(r.id)}</code></td><td>${esc(r.author)}</td><td>${esc(r.title)}</td><td>${esc([r.edition, r.volume].filter(Boolean).join(", "))}</td><td>${esc(r.category)}</td></tr>`).join("");
-}).catch(() => { document.getElementById("src").innerHTML = "<tr><td>データを読み込めませんでした。</td></tr>"; });
+}).catch(() => { document.getElementById("src").innerHTML = "<tr><td>Could not load data.</td></tr>"; });
 </script>
 </main>
 <footer>
